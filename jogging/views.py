@@ -7,9 +7,22 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 class RecordViewSet(viewsets.ModelViewSet):
-    queryset = Record.objects.all()
     serializer_class = RecordSerializer 
     permission_classes = [IsAuthenticated,]
+
+    def get_queryset(self):
+        records = []
+        user = User.objects.filter(username=self.request.user)[0]
+        print(user.userprofile)
+        role = user.userprofile.role
+
+        if role == 'User':
+            records = Record.objects.filter(user_id=user.id)
+
+        elif role == 'Admin':
+            records = Record.objects.all()
+#        role = user.userprfile
+        return records
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

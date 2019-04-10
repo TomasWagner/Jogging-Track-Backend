@@ -21,7 +21,7 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=10, choices=ROLES, default='U')
 
 class Record(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     distance = models.IntegerField(validators=[validate_positive])
     time = models.IntegerField(validators=[validate_positive])

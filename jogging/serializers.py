@@ -25,6 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Record
-        fields = ('date', 'distance', 'time', 'user')
+        depth = 2
+        fields = ('id', 'date', 'distance', 'time', 'user')
 
         

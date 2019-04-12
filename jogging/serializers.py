@@ -28,4 +28,7 @@ class RecordSerializer(serializers.ModelSerializer):
         depth = 2
         fields = ('id', 'date', 'distance', 'time','user', 'user_id')
 
-        
+class WeeklyDataSerializer(serializers.Serializer):
+    week = serializers.CharField(max_length=100)
+    totalDistance = serializers.IntegerField()
+    totalTime = serializers.IntegerField()        
